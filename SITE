@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="https://player.vimeo.com/api/player.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Portfolio — Loïs Caustrois</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Bebas+Neue&family=DM+Sans:wght@300;400&display=swap" rel="stylesheet"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #0c0c0b;
+      --surface: #141412;
+      --text: #e8e4dc;
+      --muted: #7a7468;
+      --accent: #c9a96e;
+      --accent2: #8b6f4e;
+      --border: rgba(201,169,110,0.15);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      cursor: none;
+      overflow-x: hidden;
+    }
+
+    section, #work, #about, #services, #contact, #projects {
+      scroll-margin-top:-50px;
+    }
+
+    /* ── Cursor ── */
+    .cursor {
+      width: 10px; height: 10px; background: var(--accent);
+      border-radius: 50%; position: fixed; top: 0; left: 0;
+      pointer-events: none; z-index: 9999; transform: translate(-50%, -50%);
+      transition: transform 0.1s ease, width 0.3s ease, height 0.3s ease;
+      mix-blend-mode: difference;
+    }
+    .cursor-ring {
+      width: 36px; height: 36px; border: 1px solid var(--accent);
+      border-radius: 50%; position: fixed; top: 0; left: 0;
+      pointer-events: none; z-index: 9998; transform: translate(-50%, -50%);
+      transition: transform 0.18s ease, width 0.3s ease, height 0.3s ease, opacity 0.3s ease;
+      opacity: 0.6;
+    }
+
+    body::before {
+      content: ''; position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 9997; opacity: 0.5;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 2rem 3rem;
+    }
+    nav::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(to bottom, rgba(12,12,11,0.9) 0%, transparent 100%);
+      z-index: -1;
+    }
+    .nav-logo {
+      font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem;
+      letter-spacing: 0.2em; color: var(--text); text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      color: var(--muted); text-decoration: none; font-size: 0.75rem;
+      letter-spacing: 0.12em; text-transform: uppercase; transition: color 0.3s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* ── HERO ── */
+    .hero {
+      height: 100vh; display: flex; flex-direction: column;
+      justify-content: flex-end; padding: 4rem 3rem;
+      position: relative; overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse at 70% 40%, rgba(139,111,78,0.12) 0%, transparent 60%),
+        radial-gradient(ellipse at 20% 80%, rgba(201,169,110,0.06) 0%, transparent 50%);
+    }
+    .hero-img {
+      position: absolute; inset: 0;
+      background: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600&q=80') center/cover no-repeat;
+      opacity: 0.18; filter: grayscale(30%);
+    }
+    .hero-line {
+      position: absolute; right: 3rem; top: 50%; transform: translateY(-50%);
+      width: 1px; height: 30vh;
+      background: linear-gradient(to bottom, transparent, var(--accent), transparent);
+      opacity: 0.5;
+    }
+    .hero-content { position: relative; max-width: 900px; }
+    .hero-eyebrow {
+      font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 1.5rem;
+      opacity: 0; animation: fadeUp 0.8s ease 0.3s forwards;
+    }
+    .hero-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(4rem, 12vw, 11rem);
+      line-height: 0.92; letter-spacing: 0.02em; color: var(--text);
+    }
+    .hero-title em {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic; font-size: 0.85em; color: var(--accent);
+    }
+    .hero-title .letter { display: inline-block; will-change: transform, opacity; }
+    .hero-sub {
+      margin-top: 2rem; font-size: 0.85rem; color: var(--muted);
+      letter-spacing: 0.08em; max-width: 380px; line-height: 1.7;
+      opacity: 0; animation: fadeUp 0.9s ease 1.4s forwards;
+    }
+    .hero-scroll {
+      position: absolute; bottom: 3rem; right: 3rem;
+      display: flex; flex-direction: column; align-items: center; gap: 0.6rem;
+      opacity: 0; animation: fadeIn 1s ease 1.6s forwards;
+    }
+    .hero-scroll span {
+      font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--muted); writing-mode: vertical-rl;
+    }
+    .scroll-line {
+      width: 1px; height: 60px;
+      background: linear-gradient(to bottom, var(--accent), transparent);
+      animation: scrollPulse 2s ease infinite;
+    }
+
+    /* ── GALLERY ── */
+    #work { padding: 8rem 3rem 6rem; }
+    .section-header { display: flex; align-items: baseline; gap: 2rem; margin-bottom: 4rem; }
+    .section-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.5rem, 5vw, 4rem); letter-spacing: 0.05em; }
+    .section-number { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--accent); font-size: 1rem; }
+    .section-rule { flex: 1; height: 1px; background: var(--border); }
+
+    .filters { display: flex; gap: 0.5rem; margin-bottom: 3rem; flex-wrap: wrap; }
+    .filter-btn {
+      padding: 0.4rem 1.2rem; border: 1px solid var(--border);
+      background: transparent; color: var(--muted);
+      font-family: 'DM Sans', sans-serif; font-size: 0.7rem;
+      letter-spacing: 0.12em; text-transform: uppercase; cursor: none; transition: all 0.3s;
+    }
+    .filter-btn.active, .filter-btn:hover { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+
+    .gallery-grid { columns: 3; column-gap: 1.2rem; }
+    @media (max-width: 900px) { .gallery-grid { columns: 2; } }
+    @media (max-width: 560px) { .gallery-grid { columns: 1; } }
+
+    .gallery-item {
+      break-inside: avoid; margin-bottom: 1.2rem;
+      position: relative; overflow: hidden; display: block;
+      opacity: 0; transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease; cursor: none;
+    }
+    .gallery-item.visible { opacity: 1; transform: none; }
+    .gallery-item img {
+      width: 100%; display: block;
+      filter: grayscale(20%) brightness(0.85);
+      transition: transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94), filter 0.5s ease;
+    }
+    .gallery-item:hover img { transform: scale(1.04); filter: grayscale(0%) brightness(1); }
+    .gallery-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(12,12,11,0.85) 0%, transparent 50%);
+      opacity: 0; transition: opacity 0.4s ease;
+      display: flex; align-items: flex-end; padding: 1.5rem;
+    }
+    .gallery-item:hover .gallery-overlay { opacity: 1; }
+    .gallery-info h3 { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.1rem; color: var(--text); }
+    .gallery-info p { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-top: 0.25rem; }
+
+    /* ════════════════════════════════
+       PROJECTS / RESEARCH SECTION
+    ════════════════════════════════ */
+    #projects {
+      padding: 8rem 3rem;
+      border-top: 1px solid var(--border);
+      position: relative;
+    }
+
+    /* vertical spine */
+    .timeline {
+      position: relative;
+      margin-top: 5rem;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0; bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, var(--accent), transparent);
+      opacity: 0.25;
+    }
+
+    /* ── Single project block ── */
+    .project-block {
+      position: relative;
+      padding: 0 0 7rem 3.5rem;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .project-block.visible { opacity: 1; transform: none; }
+
+    /* dot on the spine */
+    .project-block::before {
+      content: '';
+      position: absolute;
+      left: -4px; top: 8px;
+      width: 9px; height: 9px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 12px rgba(201,169,110,0.5);
+    }
+
+    .project-date {
+      font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--accent); opacity: 0.6; margin-bottom: 0.8rem;
+    }
+    .project-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 3vw, 3rem);
+      font-weight: 300; line-height: 1.1;
+      margin-bottom: 0.6rem;
+    }
+    .project-subtitle {
+      font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 2rem; opacity: 0.7;
+    }
+    .project-desc {
+      color: var(--muted); font-size: 0.88rem; line-height: 1.9;
+      max-width: 680px; margin-bottom: 3rem;
+    }
+
+    /* ── Media grid inside a project ── */
+    .project-media {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-bottom: 3rem;
+    }
+    .media-item {
+      position: relative; overflow: hidden;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      cursor: none;
+      transition: border-color 0.3s;
+    }
+    .media-item:hover { border-color: var(--accent); }
+    .media-item img {
+      width: 100%; display: block; aspect-ratio: 4/3; object-fit: cover;
+      filter: grayscale(15%) brightness(0.85);
+      transition: transform 0.5s ease, filter 0.4s ease;
+    }
+    .media-item:hover img { transform: scale(1.05); filter: grayscale(0%) brightness(1); }
+
+    /* Video embed */
+    .media-item.video-item { aspect-ratio: 16/9; }
+    .media-item.video-item iframe {
+      width: 100%; height: 100%; display: block; border: none;
+    }
+
+    /* PDF / doc card */
+    .media-item.doc-item {
+      display: flex; flex-direction: column;
+      justify-content: space-between;
+      padding: 1.5rem; min-height: 160px;
+      text-decoration: none;
+    }
+    .doc-icon {
+      font-size: 1.8rem; opacity: 0.3; margin-bottom: 1rem;
+      font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.1em;
+      color: var(--accent);
+    }
+    .doc-name {
+      font-family: 'Cormorant Garamond', serif; font-style: italic;
+      font-size: 1rem; color: var(--text); line-height: 1.3;
+      margin-bottom: 0.5rem;
+    }
+    .doc-meta {
+      font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--accent); opacity: 0.6;
+    }
+
+    /* ── Research / references row ── */
+    .project-refs {
+      display: flex; flex-wrap: wrap; gap: 0.6rem;
+      margin-bottom: 2rem;
+    }
+    .ref-tag {
+      padding: 0.35rem 1rem;
+      border: 1px solid var(--border);
+      font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--muted); text-decoration: none;
+      transition: all 0.3s;
+    }
+    .ref-tag:hover { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+
+    /* ── Expandable research notes ── */
+    .project-notes-toggle {
+      background: none; border: none; cursor: none;
+      display: flex; align-items: center; gap: 0.8rem;
+      font-family: 'DM Sans', sans-serif; font-size: 0.65rem;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--muted); padding: 0; margin-bottom: 1.5rem;
+      transition: color 0.3s;
+    }
+    .project-notes-toggle:hover { color: var(--accent); }
+    .toggle-icon {
+      width: 18px; height: 18px; border: 1px solid currentColor;
+      border-radius: 50%; position: relative; flex-shrink: 0;
+      transition: transform 0.3s;
+    }
+    .toggle-icon::before, .toggle-icon::after {
+      content: ''; position: absolute; top: 50%; left: 50%;
+      background: currentColor;
+    }
+    .toggle-icon::before { width: 8px; height: 1px; transform: translate(-50%,-50%); }
+    .toggle-icon::after  { width: 1px; height: 8px; transform: translate(-50%,-50%); transition: transform 0.3s, opacity 0.3s; }
+    .project-notes-toggle.open .toggle-icon { transform: rotate(45deg); }
+
+    .project-notes {
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.6s cubic-bezier(0.77,0,0.18,1);
+    }
+    .project-notes.open { max-height: 1000px; }
+    .project-notes-inner {
+      padding: 2rem; border: 1px solid var(--border);
+      background: var(--surface); margin-bottom: 2rem;
+    }
+    .project-notes-inner p {
+      color: var(--muted); font-size: 0.85rem; line-height: 1.9;
+      margin-bottom: 1rem;
+    }
+    .project-notes-inner p:last-child { margin-bottom: 0; }
+
+    /* project divider */
+    .project-block + .project-block::after {
+      display: none;
+    }
+
+    /* ── ABOUT ── */
+    #about {
+      padding: 8rem 3rem; display: grid;
+      grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center;
+      border-top: 1px solid var(--border);
+    }
+    @media (max-width: 768px) { #about { grid-template-columns: 1fr; gap: 3rem; } }
+    .about-img-wrap { position: relative; aspect-ratio: 3/4; }
+    .about-img-wrap img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(15%); }
+    .about-img-wrap::before {
+      content: ''; position: absolute; inset: -12px -12px 12px 12px;
+      border: 1px solid var(--border); z-index: -1;
+    }
+    .about-label { font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem; }
+    .about-heading { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 300; line-height: 1.15; margin-bottom: 2rem; }
+    .about-text { color: var(--muted); line-height: 1.9; font-size: 0.9rem; margin-bottom: 1.5rem; }
+    .about-stats { display: flex; gap: 3rem; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border); }
+    .stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; color: var(--accent); line-height: 1; }
+    .stat-label { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-top: 0.4rem; }
+
+    /* ── SERVICES ── */
+    #services { padding: 8rem 3rem; border-top: 1px solid var(--border); }
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin-top: 4rem; }
+    @media (max-width: 768px) { .services-grid { grid-template-columns: 1fr; } }
+    .service-item {
+      padding: 3rem; border: 1px solid var(--border);
+      transition: background 0.3s; position: relative; overflow: hidden;
+    }
+    .service-item::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--accent); transition: width 0.5s ease; }
+    .service-item:hover::after { width: 100%; }
+    .service-item:hover { background: rgba(201,169,110,0.04); }
+    .service-num { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 3rem; color: var(--border); line-height: 1; margin-bottom: 1.5rem; }
+    .service-title { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; margin-bottom: 1rem; }
+    .service-desc { color: var(--muted); font-size: 0.85rem; line-height: 1.8; }
+
+    /* ── CONTACT ── */
+    #contact { padding: 8rem 3rem; border-top: 1px solid var(--border); text-align: center; position: relative; overflow: hidden; }
+    #contact::before {
+      content: 'CONTACT'; font-family: 'Bebas Neue', sans-serif; font-size: 20vw;
+      color: rgba(201,169,110,0.03); position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%,-50%); white-space: nowrap; pointer-events: none;
+    }
+    .contact-label { font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem; }
+    .contact-heading { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem, 6vw, 5rem); font-weight: 300; line-height: 1.1; margin-bottom: 3rem; }
+    .contact-heading em { font-style: italic; color: var(--accent); }
+    .contact-email {
+      display: inline-block; font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(1rem, 3vw, 1.8rem); letter-spacing: 0.1em;
+      color: var(--text); text-decoration: none;
+      border-bottom: 1px solid var(--accent); padding-bottom: 0.3rem; transition: color 0.3s;
+    }
+    .contact-email:hover { color: var(--accent); }
+    .social-links { display: flex; justify-content: center; gap: 2rem; margin-top: 4rem; }
+    .social-links a { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.3s; }
+    .social-links a:hover { color: var(--accent); }
+
+    /* ── FOOTER ── */
+    footer { padding: 2rem 3rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+    footer p { font-size: 0.65rem; letter-spacing: 0.1em; color: var(--muted); }
+
+    /* ── LIGHTBOX ── */
+    .lightbox {
+      position: fixed; inset: 0; z-index: 1000;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none; transition: opacity 0.5s ease;
+    }
+    .lightbox.open { opacity: 1; pointer-events: all; }
+    .lightbox-backdrop { position: absolute; inset: 0; background: rgba(8,8,7,0.96); backdrop-filter: blur(14px); }
+    .lightbox-inner { position: relative; z-index: 1; width: 90vw; max-width: 1200px; height: 82vh; display: flex; align-items: center; overflow: hidden; }
+    .lightbox-img-pane { flex-shrink: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; transition: width 1s cubic-bezier(0.77,0,0.18,1); }
+    .lightbox.open .lightbox-img-pane { width: 60%; }
+    .lightbox-img-pane img { max-width: 100%; max-height: 100%; object-fit: contain; display: block; opacity: 0; }
+    .lightbox.open .lightbox-img-pane img { animation: lbImgEntrance 1.1s cubic-bezier(0.77,0,0.18,1) forwards; }
+    @keyframes lbImgEntrance {
+      0%   { transform: scale(0.85); opacity: 0; }
+      45%  { transform: scale(1.22); opacity: 1; }
+      100% { transform: scale(1);    opacity: 1; }
+    }
+    .lightbox-divider-v { flex-shrink: 0; width: 1px; height: 60%; background: linear-gradient(to bottom, transparent, #c9a96e, transparent); opacity: 0; transition: opacity 0.6s ease 0.7s; }
+    .lightbox.open .lightbox-divider-v { opacity: 0.3; }
+    .lightbox-desc-pane { flex-shrink: 0; width: 0%; height: 100%; overflow: hidden; transition: width 1s cubic-bezier(0.77,0,0.18,1); }
+    .lightbox.open .lightbox-desc-pane { width: 40%; }
+    .lightbox-desc-content { padding: 0 2.5rem 0 2rem; opacity: 0; transform: translateX(30px); transition: opacity 0.8s ease 0.65s, transform 0.8s ease 0.65s; min-width: 260px; }
+    .lightbox.open .lightbox-desc-content { opacity: 1; transform: translateX(0); }
+    .lb-eyebrow { font-size: 0.58rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--accent); opacity: 0.6; margin-bottom: 1.2rem; }
+    .lb-title { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: clamp(1.6rem, 2.5vw, 2.6rem); font-weight: 300; line-height: 1.1; color: var(--text); margin-bottom: 1.5rem; }
+    .lb-rule { width: 36px; height: 1px; background: var(--accent); opacity: 0.45; margin-bottom: 1.5rem; }
+    .lb-body { font-size: 0.82rem; line-height: 1.9; color: rgba(122,116,104,0.8); margin-bottom: 2rem; }
+    .lb-meta { display: flex; flex-direction: column; gap: 0.7rem; }
+    .lb-meta-row { display: flex; gap: 1rem; align-items: baseline; }
+    .lb-meta-label { font-size: 0.53rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--accent); opacity: 0.55; min-width: 58px; }
+    .lb-meta-val { font-size: 0.72rem; color: var(--muted); letter-spacing: 0.05em; }
+    .lb-close { position: absolute; top: -2.8rem; right: 0; background: none; border: none; cursor: none; color: var(--muted); font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; display: flex; align-items: center; gap: 0.7rem; transition: color 0.3s; padding: 0; }
+    .lb-close:hover { color: var(--accent); }
+    .lb-close-icon { width: 22px; height: 22px; position: relative; }
+    .lb-close-icon::before, .lb-close-icon::after { content: ''; position: absolute; top: 50%; left: 50%; width: 100%; height: 1px; background: currentColor; }
+    .lb-close-icon::before { transform: translate(-50%,-50%) rotate(45deg); }
+    .lb-close-icon::after  { transform: translate(-50%,-50%) rotate(-45deg); }
+    .lb-nav { position: absolute; bottom: -3rem; left: 0; display: flex; gap: 1.2rem; }
+    .lb-nav button { background: none; border: 1px solid var(--border); color: var(--muted); font-family: 'DM Sans', sans-serif; font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; padding: 0.45rem 1.1rem; cursor: none; transition: all 0.3s; }
+    .lb-nav button:hover { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+    .lb-counter { position: absolute; bottom: -2.7rem; right: 0; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 0.82rem; color: var(--muted); opacity: 0.45; }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes scrollPulse { 0%, 100% { opacity: 0.4; transform: scaleY(1); } 50% { opacity: 1; transform: scaleY(1.2); } }
+  </style>
+</head>
+<body>
+
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox">
+    <div class="lightbox-backdrop" id="lbBackdrop"></div>
+    <div class="lightbox-inner">
+      <button class="lb-close" id="lbClose"><div class="lb-close-icon"></div><span>Close</span></button>
+      <div class="lightbox-img-pane"><img id="lbImg" src="" alt="" /></div>
+      <div class="lightbox-divider-v"></div>
+      <div class="lightbox-desc-pane">
+        <div class="lightbox-desc-content">
+          <p class="lb-eyebrow" id="lbCat">—</p>
+          <h2 class="lb-title" id="lbTitle">—</h2>
+          <div class="lb-rule"></div>
+          <p class="lb-body" id="lbBody">—</p>
+          <div class="lb-meta">
+            <div class="lb-meta-row"><span class="lb-meta-label">Series</span><span class="lb-meta-val" id="lbSeries">—</span></div>
+            <div class="lb-meta-row"><span class="lb-meta-label">Medium</span><span class="lb-meta-val" id="lbMedium">—</span></div>
+            <div class="lb-meta-row"><span class="lb-meta-label">Year</span><span class="lb-meta-val" id="lbYear">—</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="lb-nav"><button id="lbPrev">← Prev</button><button id="lbNext">Next →</button></div>
+      <div class="lb-counter" id="lbCounter">1 / 9</div>
+    </div>
+  </div>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">Loïs Caustrois</a>
+    <ul class="nav-links">
+      <li><a href="#work">Mon travail</a></li>
+      <li><a href="#about">Moi</a></li>
+      <li><a href="#projects">Projets</a></li>
+      <li><a href="#services">Mes experiences</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-img"></div>
+    <div class="hero-line"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Étudiante artiste — Paris</p>
+      <h1 class="hero-title">Light<br><em>& Shadow</em></h1>
+      <p class="hero-sub">Animé le monde qui m'entoure</p>
+    </div>
+    <div class="hero-scroll"><span>Scroll</span><div class="scroll-line"></div></div>
+  </section>
+
+  <!-- GALLERY -->
+  <section id="work">
+    <div class="section-header">
+      <span class="section-number">01</span>
+      <h2 class="section-title">Ma sélection</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="filters">
+      <button class="filter-btn active" data-filter="all">Tout</button>
+      <button class="filter-btn" data-filter="portrait">Portrait</button>
+      <button class="filter-btn" data-filter="landscape">Animation</button>
+      <button class="filter-btn" data-filter="editorial">Editorial</button>
+      <button class="filter-btn" data-filter="fine-art">Fine Art</button>
+    </div>
+    <div class="gallery-grid" id="gallery"></div>
+  </section>
+ <!-- ABOUT -->
+  <section id="about">
+    <div class="about-img-wrap">
+      <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=800&q=80" alt="Artist portrait"/>
+    </div>
+    <div class="about-text-col">
+      <p class="about-label">à propos de moi</p>
+      <h2 class="about-heading">Animé par la passion.</h2>
+      <p class="about-text">JE suis Loïs je suis belle</p>
+      <p class="about-text">BITE2</p>
+      <div class="about-stats">
+        <div><div class="stat-num">19+</div><div class="stat-label">Years</div></div>
+        <div><div class="stat-num">10000</div><div class="stat-label">Projets</div></div>
+        <div><div class="stat-num">500</div><div class="stat-label">Expositions</div></div>
+      </div>
+    </div>
+  </section>
+  <!-- ════════════════════════════════
+       PROJECTS & RESEARCH SECTION
+  ════════════════════════════════ -->
+  <section id="projects">
+    <div class="section-header">
+      <span class="section-number">02</span>
+      <h2 class="section-title">Projets & Recherches</h2>
+      <div class="section-rule"></div>
+    </div>
+
+    <div class="timeline">
+
+      <!-- ── PROJECT 1 ── -->
+      <div class="project-block" id="proj1">
+        <p class="project-date">Septembre 2024 — Janvier 2025</p>
+        <h2 class="project-title">Titre du Projet Final</h2>
+        <p class="project-subtitle">Projet de fin d'études · École des Arts · Paris</p>
+        <p class="project-desc">
+          Décrivez ici votre projet — la problématique, l'intention artistique, le contexte.
+          Ce texte apparaît en premier, avant les visuels, pour donner le cadre de lecture.
+          Remplacez ce texte par votre propre description.
+        </p>
+
+        <!-- Images & videos -->
+        <div class="project-media">
+
+          <!-- Image placeholder 1 -->
+          <div class="media-item">
+            <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?w=800&q=80" alt="Visuel du projet" />
+          </div>
+
+          <!-- Image placeholder 2 -->
+          <div class="media-item">
+            <img src="https://images.unsplash.com/photo-1470770903676-69b98201ea1c?w=800&q=80" alt="Recherche visuelle" />
+          </div>
+
+          <!-- Video embed — replace src with your YouTube/Vimeo embed URL -->
+          <div class="media-item video-item" style="padding:0; overflow:hidden;">
+         <div style="padding:56.25% 0 0 0; position:relative;">
+         <iframe
+         src="https://player.vimeo.com/video/1173110628?badge=0&autopause=0&player_id=0&app_id=58479"
+         frameborder="0"
+         allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
+         referrerpolicy="strict-origin-when-cross-origin"
+         style="position:absolute;top:0;left:0;width:100%;height:100%;"
+         title="Mon projet">
+         </iframe>
+          </div>
+         
+          <!-- PDF / Document card — replace href with your PDF link -->
+          <a class="media-item doc-item" href="#" target="_blank">
+            <div class="doc-icon">PDF</div>
+            <div>
+              <p class="doc-name">Dossier de recherche complet</p>
+              <p class="doc-meta">PDF · 42 pages · 2025</p>
+            </div>
+          </a>
+
+          <!-- Image placeholder 3 -->
+          <div class="media-item">
+            <img src="https://images.unsplash.com/photo-1524863479829-916d8e77f114?w=800&q=80" alt="Maquette" />
+          </div>
+
+          <!-- Another doc -->
+          <a class="media-item doc-item" href="#" target="_blank">
+            <div class="doc-icon">DOC</div>
+            <div>
+              <p class="doc-name">Note d'intention</p>
+              <p class="doc-meta">Word · 8 pages · 2024</p>
+            </div>
+          </a>
+
+        </div>
+
+        <!-- References / links -->
+        <p style="font-size:0.6rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--accent);opacity:0.6;margin-bottom:1rem;">Références & Influences</p>
+        <div class="project-refs">
+          <a class="ref-tag" href="#" target="_blank">Nom d'un artiste</a>
+          <a class="ref-tag" href="#" target="_blank">Titre d'un livre</a>
+          <a class="ref-tag" href="#" target="_blank">Exposition de référence</a>
+          <a class="ref-tag" href="#" target="_blank">Article / Revue</a>
+          <a class="ref-tag" href="#" target="_blank">Site web</a>
+        </div>
+
+        <!-- Expandable research notes -->
+        <button class="project-notes-toggle" id="toggle1">
+          <div class="toggle-icon"></div>
+          <span>Notes de recherche</span>
+        </button>
+        <div class="project-notes" id="notes1">
+          <div class="project-notes-inner">
+            <p>Écrivez ici vos notes de recherche approfondies — citations, observations, réflexions intermédiaires, extraits de lectures. Ce contenu est caché par défaut et s'ouvre au clic pour ne pas alourdir la lecture.</p>
+            <p>Vous pouvez ajouter autant de paragraphes que nécessaire. C'est l'espace pour montrer la profondeur de votre processus intellectuel et artistique.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── PROJECT 2 ── -->
+      <div class="project-block" id="proj2">
+        <p class="project-date">Mars 2024 — Juin 2024</p>
+        <h2 class="project-title">Deuxième Projet</h2>
+        <p class="project-subtitle">Atelier expérimental · Semestre 2</p>
+        <p class="project-desc">
+          Description de votre deuxième projet. Expliquez la démarche, les expérimentations menées,
+          ce que vous avez découvert au fil du processus créatif.
+        </p>
+
+        <div class="project-media">
+          <div class="media-item">
+            <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=800&q=80" alt="Projet 2" />
+          </div>
+          <div class="media-item">
+            <img src="https://images.unsplash.com/photo-1551963831-b3b1ca40c98e?w=800&q=80" alt="Projet 2 détail" />
+          </div>
+          <a class="media-item doc-item" href="#" target="_blank">
+            <div class="doc-icon">PDF</div>
+            <div>
+              <p class="doc-name">Carnet de bord</p>
+              <p class="doc-meta">PDF · 18 pages · 2024</p>
+            </div>
+          </a>
+        </div>
+
+        <p style="font-size:0.6rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--accent);opacity:0.6;margin-bottom:1rem;">Références & Influences</p>
+        <div class="project-refs">
+          <a class="ref-tag" href="#" target="_blank">Référence 1</a>
+          <a class="ref-tag" href="#" target="_blank">Référence 2</a>
+          <a class="ref-tag" href="#" target="_blank">Référence 3</a>
+        </div>
+
+        <button class="project-notes-toggle" id="toggle2">
+          <div class="toggle-icon"></div>
+          <span>Notes de recherche</span>
+        </button>
+        <div class="project-notes" id="notes2">
+          <div class="project-notes-inner">
+            <p>Vos notes de recherche pour ce projet. Citations, observations, questions ouvertes, liens entre les œuvres étudiées et votre propre pratique.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── PROJECT 3 ── -->
+      <div class="project-block" id="proj3">
+        <p class="project-date">Octobre 2023 — Février 2024</p>
+        <h2 class="project-title">Troisième Projet</h2>
+        <p class="project-subtitle">Recherche personnelle · Semestre 1</p>
+        <p class="project-desc">
+          Description de votre troisième projet ou de vos premières explorations artistiques documentées.
+        </p>
+
+        <div class="project-media">
+          <div class="media-item">
+            <img src="https://images.unsplash.com/photo-1465101162946-4377e57745c3?w=800&q=80" alt="Projet 3" />
+          </div>
+          <div class="media-item">
+            <img src="https://images.unsplash.com/photo-1509021436665-8f07dbf5bf1d?w=800&q=80" alt="Projet 3 recherche" />
+          </div>
+        </div>
+
+        <p style="font-size:0.6rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--accent);opacity:0.6;margin-bottom:1rem;">Références & Influences</p>
+        <div class="project-refs">
+          <a class="ref-tag" href="#" target="_blank">Référence 1</a>
+          <a class="ref-tag" href="#" target="_blank">Référence 2</a>
+        </div>
+
+        <button class="project-notes-toggle" id="toggle3">
+          <div class="toggle-icon"></div>
+          <span>Notes de recherche</span>
+        </button>
+        <div class="project-notes" id="notes3">
+          <div class="project-notes-inner">
+            <p>Notes de recherche pour ce projet.</p>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- end .timeline -->
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="section-header">
+      <span class="section-number">03</span>
+      <h2 class="section-title">Mes experiences</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="services-grid">
+      <div class="service-item">
+        <div class="service-num">01</div>
+        <h3 class="service-title">Editorial & Magazine</h3>
+        <p class="service-desc">Storytelling photography for print and digital publications. From concept to final delivery, crafted with a distinctive editorial eye.</p>
+      </div>
+      <div class="service-item">
+        <div class="service-num">02</div>
+        <h3 class="service-title">Commercial & Brand</h3>
+        <p class="service-desc">Campaign photography that gives products and brands a compelling visual identity. Art direction and full production available.</p>
+      </div>
+      <div class="service-item">
+        <div class="service-num">03</div>
+        <h3 class="service-title">Fine Art Prints</h3>
+        <p class="service-desc">Limited-edition archival prints available for collectors and galleries. Custom framing and white-glove delivery worldwide.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <p class="contact-label">Me contacter</p>
+    <h2 class="contact-heading">Let's make something<br><em>unforgettable.</em></h2>
+    <a class="contact-email" href="https://mail.google.com/mail/?view=cm&fs=1&to=loiscaustrois@gmail.com&su=Contact%20Portfolio&body=Bonjour%20Loïs,">Envoyez-moi un mail</a>
+    <div class="social-links">
+      <a href="https://www.instagram.com/arts_by_low">Instagram</a>
+      <a href="#">Behance</a>
+      <a href="#">LinkedIn</a>
+      <a href="#">VSCO</a>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 Loïs Caustrois. All rights reserved.</p>
+    <p>Handcrafted with intention.</p>
+  </footer>
+
+  <script>
+    // ── Cursor ──
+    const cursor = document.getElementById('cursor');
+    const ring   = document.getElementById('cursorRing');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+    (function animCursor() {
+      cursor.style.left = mx + 'px'; cursor.style.top = my + 'px';
+      rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
+      ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+      requestAnimationFrame(animCursor);
+    })();
+    function bindCursor() {
+      document.querySelectorAll('a, button').forEach(el => {
+        el.addEventListener('mouseenter', () => { ring.style.width = '56px'; ring.style.height = '56px'; });
+        el.addEventListener('mouseleave', () => { ring.style.width = '36px'; ring.style.height = '36px'; });
+      });
+    }
+    bindCursor();
+
+    // ── Gallery data ──
+    const photos = [
+      { src: 'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?w=1200&q=85', title: 'Before Dawn',    cat: 'landscape', body: 'Caught between night and first light — the mountain holds its breath before the world wakes.',  series: 'Alpenglow',        medium: 'Digital Photography',    year: '2024' },
+      { src: 'https://images.unsplash.com/photo-1531306728370-e2ebd9d7bb99?w=1200&q=85', title: 'Solitude I',     cat: 'portrait',  body: 'A study in stillness. The subject asked to be shown as they feel, not as they appear.',         series: 'Inner Landscapes', medium: 'Film — 35mm',             year: '2023' },
+      { src: 'https://images.unsplash.com/photo-1470770903676-69b98201ea1c?w=1200&q=85', title: 'Golden Hour',    cat: 'landscape', body: 'Twenty minutes of light that transforms the ordinary into something worth remembering.',         series: 'Alpenglow',        medium: 'Digital Photography',    year: '2024' },
+      { src: 'https://images.unsplash.com/photo-1524863479829-916d8e77f114?w=1200&q=85', title: 'Reverie',        cat: 'fine-art',  body: 'The architecture of dreams — structured, yet always just out of reach.',                        series: 'Oneiric',          medium: 'Archival Pigment Print', year: '2023' },
+      { src: 'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=1200&q=85', title: 'Passage',        cat: 'editorial', body: 'Shot for a Paris-based publication exploring urban solitude at dusk.',                           series: 'City Nocturne',    medium: 'Digital Photography',    year: '2022' },
+      { src: 'https://images.unsplash.com/photo-1551963831-b3b1ca40c98e?w=1200&q=85',   title: 'Fragment',       cat: 'fine-art',  body: 'What remains when context is stripped away? The fragment speaks louder than the whole.',       series: 'Oneiric',          medium: 'Archival Pigment Print', year: '2023' },
+      { src: 'https://images.unsplash.com/photo-1465101162946-4377e57745c3?w=1200&q=85', title: 'Night Study',    cat: 'landscape', body: 'The city never fully sleeps — it breathes differently, softer, honest.',                        series: 'City Nocturne',    medium: 'Long Exposure',          year: '2022' },
+      { src: 'https://images.unsplash.com/photo-1487222477894-8943e31ef7b2?w=1200&q=85', title: 'In Focus',       cat: 'portrait',  body: 'To be truly seen is rare. This frame was that moment.',                                         series: 'Inner Landscapes', medium: 'Film — 35mm',             year: '2024' },
+      { src: 'https://images.unsplash.com/photo-1509021436665-8f07dbf5bf1d?w=1200&q=85', title: 'Between Frames', cat: 'editorial', body: "The image that almost wasn't — taken in the pause between two shots.",                          series: 'City Nocturne',    medium: 'Digital Photography',    year: '2023' },
+      { src: 'https://i.postimg.cc/PqbS2tLL/wallpaperflare-com-wallpaper.jpg', title: 'Between Frames', cat: 'editorial', body: "The image that almost wasn't — taken in the pause between two shots.",                          series: 'City Nocturne',    medium: 'Digital Photography',    year: '2023' },
+    ];
+
+
+    // ── Lightbox ──
+    const lightbox      = document.getElementById('lightbox');
+    let currentIndex    = 0;
+    let currentFiltered = [...photos];
+
+    function openLightbox(i) {
+      currentIndex = i;
+      const p = currentFiltered[i];
+      document.getElementById('lbImg').src             = p.src;
+      document.getElementById('lbImg').alt             = p.title;
+      document.getElementById('lbTitle').textContent   = p.title;
+      document.getElementById('lbCat').textContent     = p.cat;
+      document.getElementById('lbBody').textContent    = p.body;
+      document.getElementById('lbSeries').textContent  = p.series;
+      document.getElementById('lbMedium').textContent  = p.medium;
+      document.getElementById('lbYear').textContent    = p.year;
+      document.getElementById('lbCounter').textContent = `${i + 1} / ${currentFiltered.length}`;
+      document.body.style.overflow = 'hidden';
+      lightbox.classList.add('open');
+    }
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    document.getElementById('lbClose').addEventListener('click', closeLightbox);
+    document.getElementById('lbBackdrop').addEventListener('click', closeLightbox);
+    document.getElementById('lbPrev').addEventListener('click', e => { e.stopPropagation(); openLightbox((currentIndex - 1 + currentFiltered.length) % currentFiltered.length); });
+    document.getElementById('lbNext').addEventListener('click', e => { e.stopPropagation(); openLightbox((currentIndex + 1) % currentFiltered.length); });
+    document.addEventListener('keydown', e => {
+      if (!lightbox.classList.contains('open')) return;
+      if (e.key === 'Escape')     closeLightbox();
+      if (e.key === 'ArrowLeft')  document.getElementById('lbPrev').click();
+      if (e.key === 'ArrowRight') document.getElementById('lbNext').click();
+    });
+
+    // ── Gallery render ──
+    const gallery = document.getElementById('gallery');
+    function renderGallery(filter) {
+      gallery.innerHTML = '';
+      currentFiltered = filter === 'all' ? [...photos] : photos.filter(p => p.cat === filter);
+      currentFiltered.forEach((p, i) => {
+        const item = document.createElement('div');
+        item.className = 'gallery-item';
+        item.style.transitionDelay = (i * 0.07) + 's';
+        item.innerHTML = `
+          <img src="${p.src}" alt="${p.title}" loading="lazy"/>
+          <div class="gallery-overlay">
+            <div class="gallery-info"><h3>${p.title}</h3><p>${p.cat}</p></div>
+          </div>`;
+        gallery.appendChild(item);
+        item.addEventListener('click', () => openLightbox(i));
+        setTimeout(() => item.classList.add('visible'), 80 + i * 70);
+      });
+      bindCursor();
+    }
+    renderGallery('all');
+
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        renderGallery(btn.dataset.filter);
+      });
+    });
+
+    // ── Scroll reveal (gallery + project blocks) ──
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.gallery-item, .project-block').forEach(el => observer.observe(el));
+
+    // ── Research notes toggles ──
+    document.querySelectorAll('.project-notes-toggle').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const notesId = btn.id.replace('toggle', 'notes');
+        const notes   = document.getElementById(notesId);
+        btn.classList.toggle('open');
+        notes.classList.toggle('open');
+      });
+    });
+
+    // ── GSAP hero title ──
+    function wrapLetters(node) {
+      if (node.nodeType === 3) {
+        const frag = document.createDocumentFragment();
+        [...node.textContent].forEach(ch => {
+          if (ch === ' ' || ch === '\n') {
+            frag.appendChild(document.createTextNode(ch));
+          } else {
+            const span = document.createElement('span');
+            span.className = 'letter';
+            span.textContent = ch;
+            frag.appendChild(span);
+          }
+        });
+        node.parentNode.replaceChild(frag, node);
+      } else if (node.nodeType === 1) {
+        [...node.childNodes].forEach(wrapLetters);
+      }
+    }
+    const titleEl = document.querySelector('.hero-title');
+    wrapLetters(titleEl);
+    gsap.from('.hero-title .letter', {
+      duration: 0.9, opacity: 0, y: 80, rotateX: -90,
+      transformOrigin: '0% 50% -50px', ease: 'power4.out',
+      stagger: 0.04, delay: 0.4
+    });
+
+    bindCursor();
+  </script>
+</body>
+</html>
