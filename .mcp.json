@@ -3,6 +3,10 @@
     "datagouv": {
       "type": "http",
       "url": "https://mcp.data.gouv.fr/mcp"
+    },
+    "service-public": {
+      "type": "http",
+      "url": "https://mcp-service-public.nhaultcoeur.workers.dev/mcp"
     }
   }
 }
