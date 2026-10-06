@@ -865,89 +865,6 @@
   "supervisor_note": ""
  },
  {
-  "name": "Antioch",
-  "website": null,
-  "hq_city": "New York",
-  "hq_state": "NY",
-  "founded_year": 2025,
-  "sector": "AI & enterprise software",
-  "subsector": "AI infrastructure / physical-AI simulation",
-  "description": "Cloud simulation platform letting robotics, drone and autonomy teams test software changes in simulation before code reaches hardware.",
-  "event_type": "funding",
-  "round": "Series A",
-  "amount_usd": 32000000,
-  "event_date": "2026-09-08",
-  "lead_investors": [
-   "Greylock"
-  ],
-  "other_investors": [
-   "A*",
-   "Category Ventures",
-   "BoxGroup",
-   "Icehouse Ventures",
-   "Shyam Sankar (angel)",
-   "Adrian Macneil (angel)",
-   "Ian Andrews (angel)"
-  ],
-  "founders": [
-   "Harry Mellsop – ex-Tesla Autopilot",
-   "Alex Langshur – co-founder of Transpose",
-   "Michael Calvey – co-founder of Transpose"
-  ],
-  "employees_estimate": null,
-  "customers_or_traction": "Customers include Amazon's Ring, Launchpad Build AI, NVIDIA and Nebius; total funding $40.5M incl. $8.5M seed earlier in 2026.",
-  "europe_signals": "Customer Nebius is Amsterdam-headquartered (European AI cloud).",
-  "france_relevance_notes": "French drone, defence and aerospace players (Parrot, Delair, Safran, Thales, Dassault) and automotive autonomy programmes need simulation-based testing; Toulouse aerospace cluster; defence buyers may require sovereign/on-prem deployment.",
-  "sources": [
-   "https://app.bigdata.com/documents/B9E64677401389FF2F311D5F4325C096",
-   "https://siliconangle.com/2026/09/08/antioch-raises-32m-to-move-robot-testing-into-simulation/",
-   "https://theaiinsider.tech/2026/09/09/antioch-raises-32m-in-series-a-funding-for-physical-ai-simulation-platform/",
-   "https://thenextweb.com/news/antioch-32m-series-a-greylock-physical-ai-simulation",
-   "https://www.newswire.com/news/antioch-raises-32m-to-bring-software-speed-to-physical-ai-development"
-  ],
-  "confidence": "medium",
-  "hq_caveat": "",
-  "id": 4,
-  "market_demand": 20,
-  "regulatory_fit": 11,
-  "strategic_fit": 15,
-  "readiness": 19,
-  "rd_talent": 10,
-  "total": 75,
-  "tier": "A",
-  "opportunity_types": [
-   "market-entry",
-   "corporate-partnership",
-   "rd-hub"
-  ],
-  "france_pitch": "Safran, Thales and Parrot are scaling drone and autonomy programmes on new EU defence budgets; Aerospace Valley and the DGA's innovation agency can open sovereign simulation pilots in Toulouse.",
-  "french_counterparts": [
-   "Safran",
-   "Thales",
-   "Parrot",
-   "Renault",
-   "Dassault Systèmes"
-  ],
-  "entry_points": [
-   "Business France",
-   "Aerospace Valley",
-   "DGA/AID",
-   "France 2030",
-   "CIR/JEI"
-  ],
-  "eu_signals_verified": "Searches confirmed the $32M Greylock Series A and Ring as customer; no new European customers, offices or hiring found beyond Amsterdam-based Nebius cited in input.",
-  "risks": "French defence primes may demand sovereign or on-prem simulation; competition from Dassault Systèmes and NVIDIA Isaac Sim; Nebius is the only European customer.",
-  "next_action": "Introduce to Aerospace Valley and DGA/AID; propose a drone-simulation pilot with Safran or Parrot.",
-  "new_sources": [
-   "https://thenextweb.com/news/antioch-32m-series-a-greylock-physical-ai-simulation",
-   "https://www.robotics247.com/article/antioch-announces-32m-series-a-to-bring-software-speed-to-physical-ai-development"
-  ],
-  "score_rationale": "Market demand (20) and readiness (21) drive the score: simulation for robots and drones matches France's aerospace and defence base, and a $32M Greylock Series A plus an Amsterdam-based customer (Nebius) shows capacity for Europe.",
-  "readiness_analyst": 21,
-  "eu_bonus": 5,
-  "supervisor_note": ""
- },
- {
   "name": "Ortet",
   "website": null,
   "hq_city": "New York",
@@ -1492,84 +1409,6 @@
   "supervisor_note": ""
  },
  {
-  "name": "BackOps",
-  "website": null,
-  "hq_city": "San Francisco",
-  "hq_state": "CA",
-  "founded_year": 2024,
-  "sector": "Fintech, commerce & consumer",
-  "subsector": "Supply chain software / AI operations",
-  "description": "AI resolution layer for companies that make or move physical goods, automating carrier claims, chargeback disputes, billing and order exceptions.",
-  "event_type": "funding",
-  "round": "Series B",
-  "amount_usd": 42000000,
-  "event_date": "2026-09-16",
-  "lead_investors": [
-   "Insight Partners"
-  ],
-  "other_investors": [
-   "Theory Ventures",
-   "Construct Capital",
-   "Gradient Ventures",
-   "10VC"
-  ],
-  "founders": [
-   "Sean McCarthy – co-founder & CEO; prior affiliation not disclosed",
-   "Henry Ou – prior affiliation not disclosed"
-  ],
-  "employees_estimate": null,
-  "customers_or_traction": "500,000+ carrier claims processed for a national parcel platform, 91% resolved without humans; retailer billing cycle cut from ~28 hours to 14 minutes.",
-  "europe_signals": "none found",
-  "france_relevance_notes": "Claims and dispute automation is relevant to French logistics majors (CMA CGM/CEVA, Geodis, La Poste/DPD) and grocers like Carrefour; CSRD reporting raises the value of clean operational data.",
-  "sources": [
-   "https://app.bigdata.com/documents/57EA9E49B87B1D08225FE0B3A108D097",
-   "https://app.bigdata.com/documents/55E08D8705847FBEAF134DC956BBC736",
-   "https://app.bigdata.com/documents/BE77AD3A96C6ADC684C9D21F3EB01611",
-   "https://pulse2.com/backops-raises-42-million-series-b/",
-   "https://www.fenwick.com/insights/experience/fenwick-represents-backops-42m-series-b-funding"
-  ],
-  "confidence": "medium",
-  "hq_caveat": "",
-  "id": 53,
-  "market_demand": 21,
-  "regulatory_fit": 10,
-  "strategic_fit": 16,
-  "readiness": 17,
-  "rd_talent": 8,
-  "total": 72,
-  "tier": "A",
-  "opportunity_types": [
-   "market-entry",
-   "corporate-partnership",
-   "rd-hub"
-  ],
-  "france_pitch": "CMA CGM's CEVA, Geodis and La Poste's parcel units handle huge volumes of carrier claims and billing disputes; Business France can set up pilots, and the CIR supports a Paris AI engineering team.",
-  "french_counterparts": [
-   "CMA CGM",
-   "Geodis",
-   "FM Logistic",
-   "La Poste",
-   "Carrefour"
-  ],
-  "entry_points": [
-   "Business France",
-   "Choose France",
-   "CIR/JEI",
-   "French Tech Visa"
-  ],
-  "eu_signals_verified": "London-based 10VC is an existing investor. Customers include an unnamed top global automaker and one of the largest global retailers. No EU office, named EU customer or EU hiring found.",
-  "risks": "Claims integrations are built for US carriers. French and CMR carrier-liability rules differ. Disputes in several languages and e-invoicing formats need localisation. Faces ERP-vendor competition.",
-  "next_action": "Reach CEO Sean McCarthy through 10VC; propose a claims pilot with Geodis or CEVA.",
-  "new_sources": [
-   "https://pulse2.com/backops-raises-42-million-series-b/",
-   "https://www.healthcarepackaging.com/logistics/supply-chain/news/22962827/backops-backops-raises-26m-series-a-to-build-the-ainative-operating-system-for-global-supply-chains"
-  ],
-  "score_rationale": "Readiness (22): a $42M Series B six months after a $26M Series A, with London investor 10VC. Market demand (21): claims, chargeback and billing exceptions are shared pains for CMA CGM/CEVA, Geodis and La Poste.",
-  "readiness_analyst": 22,
-  "eu_bonus": 2,
-  "supervisor_note": ""
- },
- {
   "name": "Baselayer",
   "website": null,
   "hq_city": "New York",
@@ -1650,78 +1489,86 @@
   "supervisor_note": ""
  },
  {
-  "name": "Luzern Risk",
+  "name": "Antioch",
   "website": null,
   "hq_city": "New York",
   "hq_state": "NY",
-  "founded_year": 2023,
-  "sector": "Fintech, commerce & consumer",
-  "subsector": "Insurtech / captive insurance",
-  "description": "AI-native captive insurance manager helping businesses design, form and run their own insurance programs faster.",
+  "founded_year": 2025,
+  "sector": "AI & enterprise software",
+  "subsector": "AI infrastructure / physical-AI simulation",
+  "description": "Cloud simulation platform letting robotics, drone and autonomy teams test software changes in simulation before code reaches hardware.",
   "event_type": "funding",
-  "round": "Series B",
-  "amount_usd": 45000000,
-  "event_date": "2026-09-17",
+  "round": "Series A",
+  "amount_usd": 32000000,
+  "event_date": "2026-09-08",
   "lead_investors": [
-   "Insight Partners"
+   "Greylock"
   ],
   "other_investors": [
-   "Trust Ventures",
-   "Caffeinated Capital"
+   "A*",
+   "Category Ventures",
+   "BoxGroup",
+   "Icehouse Ventures",
+   "Shyam Sankar (angel)",
+   "Adrian Macneil (angel)",
+   "Ian Andrews (angel)"
   ],
   "founders": [
-   "Gabriel Weiss – prior affiliation not disclosed",
-   "Jonathan York – prior affiliation not disclosed",
-   "Rachel Jenkins – prior affiliation not disclosed",
-   "Sam Espinosa – prior affiliation not disclosed"
+   "Harry Mellsop – ex-Tesla Autopilot",
+   "Alex Langshur – co-founder of Transpose",
+   "Michael Calvey – co-founder of Transpose"
   ],
   "employees_estimate": null,
-  "customers_or_traction": "Formerly XN Captive; clients from mid-market firms to public companies; $12M Series A in 2025; total ~$58.5M.",
-  "europe_signals": "none found",
-  "france_relevance_notes": "France has been reforming its regime to attract captive (re)insurers; French corporates and insurers/reinsurers such as AXA and SCOR could act as partners or fronting carriers; Solvency II governs EU captives.",
+  "customers_or_traction": "Customers include Amazon's Ring, Launchpad Build AI, NVIDIA and Nebius; total funding $40.5M incl. $8.5M seed earlier in 2026.",
+  "europe_signals": "Customer Nebius is Amsterdam-headquartered (European AI cloud).",
+  "france_relevance_notes": "French drone, defence and aerospace players (Parrot, Delair, Safran, Thales, Dassault) and automotive autonomy programmes need simulation-based testing; Toulouse aerospace cluster; defence buyers may require sovereign/on-prem deployment.",
   "sources": [
-   "https://app.bigdata.com/documents/42AADFD49248C39BD80B93F72AF1CE51",
-   "https://insurance-edge.net/2026/09/18/luzern-risk-secures-45m-in-series-b-round/",
-   "https://pulse2.com/luzern-risk-raises-45-million-series-b-to-expand-ai-native-captive-insurance-platform/",
-   "https://www.axios.com/pro/fintech-deals/2026/09/17/luzern-risk-45m-captive-insurance",
-   "https://www.builtinnyc.com/company/luzern-risk"
+   "https://app.bigdata.com/documents/B9E64677401389FF2F311D5F4325C096",
+   "https://siliconangle.com/2026/09/08/antioch-raises-32m-to-move-robot-testing-into-simulation/",
+   "https://theaiinsider.tech/2026/09/09/antioch-raises-32m-in-series-a-funding-for-physical-ai-simulation-platform/",
+   "https://thenextweb.com/news/antioch-32m-series-a-greylock-physical-ai-simulation",
+   "https://www.newswire.com/news/antioch-raises-32m-to-bring-software-speed-to-physical-ai-development"
   ],
   "confidence": "medium",
   "hq_caveat": "",
-  "id": 66,
-  "market_demand": 16,
-  "regulatory_fit": 13,
+  "id": 4,
+  "market_demand": 20,
+  "regulatory_fit": 11,
   "strategic_fit": 15,
-  "readiness": 21,
-  "rd_talent": 6,
+  "readiness": 15,
+  "rd_talent": 10,
   "total": 71,
   "tier": "A",
   "opportunity_types": [
    "market-entry",
-   "corporate-partnership"
+   "corporate-partnership",
+   "rd-hub"
   ],
-  "france_pitch": "France's captive reform now gives captive reinsurers tax-deductible resilience reserves; with AXA and SCOR as fronting partners and AMRAE's risk managers as buyers, Paris could be your EU captive hub.",
+  "france_pitch": "Safran, Thales and Parrot are scaling drone and autonomy programmes on new EU defence budgets; Aerospace Valley and the DGA's innovation agency can open sovereign simulation pilots in Toulouse.",
   "french_counterparts": [
-   "AXA",
-   "SCOR",
-   "Covéa",
-   "AMRAE"
+   "Safran",
+   "Thales",
+   "Parrot",
+   "Renault",
+   "Dassault Systèmes"
   ],
   "entry_points": [
-   "ACPR",
    "Business France",
-   "Choose France"
+   "Aerospace Valley",
+   "DGA/AID",
+   "France 2030",
+   "CIR/JEI"
   ],
-  "eu_signals_verified": "Captive International's directory lists Luzern in the US, Cayman, Bermuda and Europe. Advisory board includes a former Marsh captive-management leader. No French entity or named EU domicile found.",
-  "risks": "EU captives face Solvency II capital and governance rules. Luxembourg, Ireland and Malta compete as domiciles. Mid-market captive demand in France is still nascent.",
-  "next_action": "Pitch the French captive reform and ACPR route; connect with AMRAE and AXA.",
+  "eu_signals_verified": "Searches confirmed the $32M Greylock Series A and Ring as customer; no new European customers, offices or hiring found beyond Amsterdam-based Nebius cited in input.",
+  "risks": "French defence primes may demand sovereign or on-prem simulation; competition from Dassault Systèmes and NVIDIA Isaac Sim; Nebius is the only European customer.",
+  "next_action": "Introduce to Aerospace Valley and DGA/AID; propose a drone-simulation pilot with Safran or Parrot.",
   "new_sources": [
-   "https://www.captiveinternational.com/company-directory/luzern-risk",
-   "https://captivereview.com/news/charnley-joins-luzern-risk-to-found-advisory-board/"
+   "https://thenextweb.com/news/antioch-32m-series-a-greylock-physical-ai-simulation",
+   "https://www.robotics247.com/article/antioch-announces-32m-series-a-to-bring-software-speed-to-physical-ai-development"
   ],
-  "score_rationale": "Readiness (23): a $45M Series B with reported European operations. Regulatory fit (13): France's captive-insurance reform is an explicit tailwind, and AXA, SCOR and Covéa are natural fronting and reinsurance partners (strategic 15).",
-  "readiness_analyst": 23,
-  "eu_bonus": 6,
+  "score_rationale": "Market demand (20) and readiness (21) drive the score: simulation for robots and drones matches France's aerospace and defence base, and a $32M Greylock Series A plus an Amsterdam-based customer (Nebius) shows capacity for Europe.",
+  "readiness_analyst": 21,
+  "eu_bonus": 1,
   "supervisor_note": ""
  },
  {
@@ -1871,6 +1718,84 @@
   "readiness_analyst": 21,
   "eu_bonus": 9,
   "supervisor_note": "Verified French customer (Atos Sovereign Agentic Studios) counted as an in-France presence signal; readiness raised to the top band."
+ },
+ {
+  "name": "BackOps",
+  "website": null,
+  "hq_city": "San Francisco",
+  "hq_state": "CA",
+  "founded_year": 2024,
+  "sector": "Fintech, commerce & consumer",
+  "subsector": "Supply chain software / AI operations",
+  "description": "AI resolution layer for companies that make or move physical goods, automating carrier claims, chargeback disputes, billing and order exceptions.",
+  "event_type": "funding",
+  "round": "Series B",
+  "amount_usd": 42000000,
+  "event_date": "2026-09-16",
+  "lead_investors": [
+   "Insight Partners"
+  ],
+  "other_investors": [
+   "Theory Ventures",
+   "Construct Capital",
+   "Gradient Ventures",
+   "10VC"
+  ],
+  "founders": [
+   "Sean McCarthy – co-founder & CEO; prior affiliation not disclosed",
+   "Henry Ou – prior affiliation not disclosed"
+  ],
+  "employees_estimate": null,
+  "customers_or_traction": "500,000+ carrier claims processed for a national parcel platform, 91% resolved without humans; retailer billing cycle cut from ~28 hours to 14 minutes.",
+  "europe_signals": "none found",
+  "france_relevance_notes": "Claims and dispute automation is relevant to French logistics majors (CMA CGM/CEVA, Geodis, La Poste/DPD) and grocers like Carrefour; CSRD reporting raises the value of clean operational data.",
+  "sources": [
+   "https://app.bigdata.com/documents/57EA9E49B87B1D08225FE0B3A108D097",
+   "https://app.bigdata.com/documents/55E08D8705847FBEAF134DC956BBC736",
+   "https://app.bigdata.com/documents/BE77AD3A96C6ADC684C9D21F3EB01611",
+   "https://pulse2.com/backops-raises-42-million-series-b/",
+   "https://www.fenwick.com/insights/experience/fenwick-represents-backops-42m-series-b-funding"
+  ],
+  "confidence": "medium",
+  "hq_caveat": "",
+  "id": 53,
+  "market_demand": 21,
+  "regulatory_fit": 10,
+  "strategic_fit": 16,
+  "readiness": 15,
+  "rd_talent": 8,
+  "total": 70,
+  "tier": "A",
+  "opportunity_types": [
+   "market-entry",
+   "corporate-partnership",
+   "rd-hub"
+  ],
+  "france_pitch": "CMA CGM's CEVA, Geodis and La Poste's parcel units handle huge volumes of carrier claims and billing disputes; Business France can set up pilots, and the CIR supports a Paris AI engineering team.",
+  "french_counterparts": [
+   "CMA CGM",
+   "Geodis",
+   "FM Logistic",
+   "La Poste",
+   "Carrefour"
+  ],
+  "entry_points": [
+   "Business France",
+   "Choose France",
+   "CIR/JEI",
+   "French Tech Visa"
+  ],
+  "eu_signals_verified": "London-based 10VC is an existing investor. Customers include an unnamed top global automaker and one of the largest global retailers. No EU office, named EU customer or EU hiring found.",
+  "risks": "Claims integrations are built for US carriers. French and CMR carrier-liability rules differ. Disputes in several languages and e-invoicing formats need localisation. Faces ERP-vendor competition.",
+  "next_action": "Reach CEO Sean McCarthy through 10VC; propose a claims pilot with Geodis or CEVA.",
+  "new_sources": [
+   "https://pulse2.com/backops-raises-42-million-series-b/",
+   "https://www.healthcarepackaging.com/logistics/supply-chain/news/22962827/backops-backops-raises-26m-series-a-to-build-the-ainative-operating-system-for-global-supply-chains"
+  ],
+  "score_rationale": "Readiness (22): a $42M Series B six months after a $26M Series A, with London investor 10VC. Market demand (21): claims, chargeback and billing exceptions are shared pains for CMA CGM/CEVA, Geodis and La Poste.",
+  "readiness_analyst": 22,
+  "eu_bonus": 0,
+  "supervisor_note": ""
  },
  {
   "name": "Hang Ten Systems",
@@ -2318,6 +2243,81 @@
   "score_rationale": "Regulatory fit (14) and market demand (21) drive the score: ESPR digital product passports, the Machinery Regulation and REACH make EU product compliance denser than in the US; readiness 15 reflects a $15M Series A without EU footprint.",
   "readiness_analyst": 15,
   "eu_bonus": 1,
+  "supervisor_note": ""
+ },
+ {
+  "name": "Luzern Risk",
+  "website": null,
+  "hq_city": "New York",
+  "hq_state": "NY",
+  "founded_year": 2023,
+  "sector": "Fintech, commerce & consumer",
+  "subsector": "Insurtech / captive insurance",
+  "description": "AI-native captive insurance manager helping businesses design, form and run their own insurance programs faster.",
+  "event_type": "funding",
+  "round": "Series B",
+  "amount_usd": 45000000,
+  "event_date": "2026-09-17",
+  "lead_investors": [
+   "Insight Partners"
+  ],
+  "other_investors": [
+   "Trust Ventures",
+   "Caffeinated Capital"
+  ],
+  "founders": [
+   "Gabriel Weiss – prior affiliation not disclosed",
+   "Jonathan York – prior affiliation not disclosed",
+   "Rachel Jenkins – prior affiliation not disclosed",
+   "Sam Espinosa – prior affiliation not disclosed"
+  ],
+  "employees_estimate": null,
+  "customers_or_traction": "Formerly XN Captive; clients from mid-market firms to public companies; $12M Series A in 2025; total ~$58.5M.",
+  "europe_signals": "none found",
+  "france_relevance_notes": "France has been reforming its regime to attract captive (re)insurers; French corporates and insurers/reinsurers such as AXA and SCOR could act as partners or fronting carriers; Solvency II governs EU captives.",
+  "sources": [
+   "https://app.bigdata.com/documents/42AADFD49248C39BD80B93F72AF1CE51",
+   "https://insurance-edge.net/2026/09/18/luzern-risk-secures-45m-in-series-b-round/",
+   "https://pulse2.com/luzern-risk-raises-45-million-series-b-to-expand-ai-native-captive-insurance-platform/",
+   "https://www.axios.com/pro/fintech-deals/2026/09/17/luzern-risk-45m-captive-insurance",
+   "https://www.builtinnyc.com/company/luzern-risk"
+  ],
+  "confidence": "medium",
+  "hq_caveat": "",
+  "id": 66,
+  "market_demand": 16,
+  "regulatory_fit": 13,
+  "strategic_fit": 15,
+  "readiness": 17,
+  "rd_talent": 6,
+  "total": 67,
+  "tier": "B",
+  "opportunity_types": [
+   "market-entry",
+   "corporate-partnership"
+  ],
+  "france_pitch": "France's captive reform now gives captive reinsurers tax-deductible resilience reserves; with AXA and SCOR as fronting partners and AMRAE's risk managers as buyers, Paris could be your EU captive hub.",
+  "french_counterparts": [
+   "AXA",
+   "SCOR",
+   "Covéa",
+   "AMRAE"
+  ],
+  "entry_points": [
+   "ACPR",
+   "Business France",
+   "Choose France"
+  ],
+  "eu_signals_verified": "Captive International's directory lists Luzern in the US, Cayman, Bermuda and Europe. Advisory board includes a former Marsh captive-management leader. No French entity or named EU domicile found.",
+  "risks": "EU captives face Solvency II capital and governance rules. Luxembourg, Ireland and Malta compete as domiciles. Mid-market captive demand in France is still nascent.",
+  "next_action": "Pitch the French captive reform and ACPR route; connect with AMRAE and AXA.",
+  "new_sources": [
+   "https://www.captiveinternational.com/company-directory/luzern-risk",
+   "https://captivereview.com/news/charnley-joins-luzern-risk-to-found-advisory-board/"
+  ],
+  "score_rationale": "Readiness (23): a $45M Series B with reported European operations. Regulatory fit (13): France's captive-insurance reform is an explicit tailwind, and AXA, SCOR and Covéa are natural fronting and reinsurance partners (strategic 15).",
+  "readiness_analyst": 23,
+  "eu_bonus": 2,
   "supervisor_note": ""
  },
  {
